@@ -1,6 +1,17 @@
 
 
 #include "uart.h"
+#include "uart_config.h"
+
+
+
+#if DOUBLE_SPEED_STATE==DISABLE
+	#define MYUBRR (F_CPU/16/UART_BAUD-1) 
+#elif DOUBLE_SPEED_STATE==ENABLE
+	#define MYUBRR (F_CPU/8/UART_BAUD-1) 
+#endif
+
+
 
 static uint8_t *st_rec;
 static uint8_t *pt_send = 0;
@@ -48,7 +59,7 @@ static void Tx_StrFun(void)
 void UART_Init(void)
 {
 	/* Speed selection */
-#if DOUBLE_SPEED_STATE==DOUBLE_SPEED_ENABLE
+#if DOUBLE_SPEED_STATE==ENABLE
 	SET_BIT(UCSR0A,U2X0);
 #else
 	CLR_BIT(UCSR0A,U2X0);
@@ -101,15 +112,15 @@ void UART_Init(void)
 	CLR_BIT(UCSR0A,U2X0);
 #endif
 
-#if UART_TRANSMIT_STATE==TRANSMIT_ENABLE
+#if UART_TRANSMIT_STATE==ENABLE
 	SET_BIT(UCSR0B,TXEN0);
-#elif UART_TRANSMIT_STATE==TRANSMIT_DISABLE
+#elif UART_TRANSMIT_STATE==DISABLE
 	CLR_BIT(UCSR0B,TXEN0);
 #endif
 
-#if UART_RECEIVE_STATE==RECEIVE_ENABLE
+#if UART_RECEIVE_STATE==ENABLE
 	SET_BIT(UCSR0B,RXEN0);
-#elif UART_RECEIVE_STATE==RECEIVE_DISABLE
+#elif UART_RECEIVE_STATE==DISABLE
 	CLR_BIT(UCSR0B,RXEN0);
 #endif
 

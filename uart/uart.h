@@ -2,10 +2,33 @@
 #define UART_H
 
 #include "bitmath.h"
-#include "uart_config.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+#define F_CPU 16000000
+
+#define DISABLE 0
+#define ENABLE  1
+
+#define DATA_5_BIT 0
+#define DATA_6_BIT 1
+#define DATA_7_BIT 2
+#define DATA_8_BIT 3
+#define DATA_9_BIT 4
+
+
+#define UART_STOP1 0
+#define UART_STOP2 1
+
+
+#define UART_ASYNC 0
+#define UART_SYNC  1
+
+#define NO_PARITY   0
+#define ODD_PARITY  1
+#define EVEN_PARITY 2
+
+/*----------------------------------------------------------------------------*/
 #define TxBUSY  0
 #define TxREADY 1
 
@@ -13,11 +36,6 @@
 #define RxREADY 1
 
 
-#if DOUBLE_SPEED_STATE==DOUBLE_SPEED_DISABLE
-	#define MYUBRR (F_CPU/16/UART_BAUD-1) 
-#elif DOUBLE_SPEED_STATE==DOUBLE_SPEED_ENABLE
-	#define MYUBRR (F_CPU/8/UART_BAUD-1) 
-#endif
 
 #define UART_DREMPTY_IRQ_ON  (SET_BIT(UCSR0B,UDRIE0))
 #define UART_DREMPTY_IRQ_OFF (CLR_BIT(UCSR0B,UDRIE0))

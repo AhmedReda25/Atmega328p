@@ -1,7 +1,7 @@
 #ifndef UART_CONFIG_H
 #define UART_CONFIG_H
 
-#define F_CPU 16000000
+#include "uart.h"
 
 /*
 *Double speed mode
@@ -9,7 +9,7 @@
 *         DOUBLE_SPEED_DISABLE
 */
 
-#define DOUBLE_SPEED_STATE DOUBLE_SPEED_DISABLE
+#define DOUBLE_SPEED_STATE DISABLE
 
 
 /*
@@ -47,7 +47,7 @@
 *Options: TRANSMIT_ENABLE, TRANSMIT_DISABLE
 */
 
-#define UART_TRANSMIT_STATE TRANSMIT_ENABLE
+#define UART_TRANSMIT_STATE ENABLE
 
 
 /*
@@ -55,7 +55,7 @@
 *Options: RECEIVE_ENABLE, RECIEVE_DISABLE
 */
 
-#define UART_RECEIVE_STATE RECEIVE_ENABLE
+#define UART_RECEIVE_STATE ENABLE
 
 
 /*
