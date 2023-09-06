@@ -91,7 +91,7 @@ void UART_Init(void)
 	SET_BIT(UCSR0C,UCSZ01);
 	SET_BIT(UCSR0B,UCSZ02);
 #else
-	#error "unvalid data length"
+	#error "invalid data length"
 #endif
 
 	/* Stop bits */
