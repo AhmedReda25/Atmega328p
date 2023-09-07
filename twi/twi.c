@@ -2,6 +2,11 @@
 
 #include "twi.h"
 
+static uint8_t twi_PSC[4] = {1, 16, 64, 128};
+	
+#define BRATE (((F_CPU/BUAD)-16)/(2*twi_PSC[MY_PSC]))
+
+
 static void(*twi_handler)(void);
 
 void TWI_MstrInit(void)

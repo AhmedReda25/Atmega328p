@@ -18,9 +18,6 @@
 #define BUAD 400000
 #define MY_PSC PRESCALER_1
 /*---------------------------------------------------*/
-static uint8_t twi_PSC[4] = {1, 16, 64, 128};
-	
-#define BRATE (((F_CPU/BUAD)-16)/(2*twi_PSC[MY_PSC]))
 
 
 void TWI_MstrInit(void);
